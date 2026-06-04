@@ -1,0 +1,41 @@
+# System
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# 내부 회의록 (비공개)
+회의록/
+
+# 발표자료 원본
+발표자료/
+
+# 원본 분석 폴더 (src/, data/, results/로 정리 완료)
+거시분析 시작/
+미시분析 시작/
+
+# GIS 바이너리 (대용량)
+*.shp
+*.dbf
+*.prj
+*.shx
+*.cpg
+*.qmd
+*.sbn
+*.sbx
+*.gpkg
+
+# 대용량 raw GeoJSON (results/micro/clusters는 포함)
+미시분析 시작/datasets/
+미시분析 시작/datasets/
+
+# QGIS
+*.qgz
+*.qgs
+QGIS/
+
+# 임시
+*.log
+*.tmp
+osm_cache/

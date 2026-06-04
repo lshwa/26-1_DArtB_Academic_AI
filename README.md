@@ -133,29 +133,55 @@ Monte Carlo 시뮬레이션 5,000회 수행:
 ## Repository Structure
 
 ```plaintext
-학술제/
+25-2_DArtB_Academic_Seminar/
 │
-├── README.md                      # 프로젝트 소개 (현재 파일)
+├── README.md
+├── .gitignore
 │
-├── 거시분석 시작/
-│   ├── 데이터셋/                  # 전력·재해·냉각·신재생·네트워크 피처 CSV
-│   └── 거시분석 결과/
-│       ├── 거시분석_결과_스토리라인.md
-│       ├── 코드/                  # 분석 파이썬 스크립트
-│       └── 결과/                  # 시각화 PNG, 랭킹 CSV, 민감도 분석
+├── notebooks/
+│   ├── datacenter_siting_analysis.ipynb    # 데이터센터 입지 분析 전체 흐름
+│   └── datacenter_eda_insights.ipynb       # 거시 피처 EDA 및 인사이트
 │
-├── 미시분석 시작/
-│   ├── datasets/                  # 행정경계·DEM·토지이음 SHP·OSM 캐시
-│   ├── notebooks/                 # micro_top15_final.py 등 분석 코드
-│   ├── QGIS/                      # QGIS 프로젝트 파일 (.gpkg)
-│   └── results/
-│       ├── top15/                 # 최종 결과 CSV·GeoJSON·스토리라인 MD
-│       └── 미시분析_발표자료.md
+├── src/
+│   ├── macro/                              # 거시분析 파이썬 코드
+│   │   ├── run_macro_analysis.py           # 메인 실행 스크립트
+│   │   ├── 거시분析_종합_랭킹.py
+│   │   ├── make_network_feature.py
+│   │   └── crawl_kepco_tabs2_3.py
+│   └── micro/                              # 미시分析 파이썬 코드
+│       ├── micro_top15_final.py            # 최종 250m 격자 BFS 클러스터링 (v5)
+│       ├── generate_final_outputs.py
+│       ├── fetch_osm_data.py
+│       └── fetch_all_new.py
 │
-└── 회의록/
-    └── AI/회의록/                 # 차시별 회의록 및 아이디어 정리
+├── data/
+│   └── macro/                             # 거시分析 피처 CSV (144개 시군구)
+│       ├── 사전필터_통과_시군구_144개.csv
+│       ├── 전력피처_시군구별.csv
+│       ├── 냉각_피처_최종.csv
+│       ├── 신재생_피처_수정완료.csv
+│       ├── 재해_피처_수정완료.csv
+│       └── 네트워크_인구가중거리_피처.csv
+│
+├── results/
+│   ├── macro/
+│   │   ├── 최종_랭킹_144개.csv
+│   │   ├── 피처별_점수_144개.csv
+│   │   ├── 민감도_MC_선택빈도.csv
+│   │   └── viz/                           # 시각화 PNG 8종
+│   └── micro/
+│       ├── top15_summary.csv
+│       ├── sensitivity_analysis.csv
+│       ├── top5_variable_contribution.csv
+│       └── clusters/                      # Top15 지역별 클러스터 GeoJSON
+│
+└── docs/
+    ├── 거시분석_결과_스토리라인.md
+    ├── 가중치_산정_근거.md
+    ├── 미시분석_결과_스토리라인_v5.md
+    ├── 미시분석_방법론_및_데이터출처.md
+    └── Top5_지역별_입지_분석.md
 ```
-
 ---
 
 *분석 도구: Python (pandas, geopandas, scipy, shapely, sklearn) / GIS: QGIS / 좌표계: EPSG:5179*  
